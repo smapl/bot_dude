@@ -1,9 +1,13 @@
 import vk_api
+
 import random
+import datetime
 
 from loguru import logger
 
 from .meta import TOKEN, GROUP_ID
+from .parse import data_from_site
+from .utils import week_num
 
 user_id = "108832239"
 
@@ -23,4 +27,7 @@ def postman():
 
 
 def сontroller():
-    pass
+    week_number = week_num()
+    data = data_from_site(week_number)
+
+    return

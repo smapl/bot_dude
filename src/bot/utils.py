@@ -25,6 +25,18 @@ def date_normolize(date):
     return datetime.date(year, month, day)
 
 
+def time_normolize(site_time):
+    now = datetime.datetime.now()
+
+    data = site_time.split("-")[0].replace(" ", "")
+    hour, minute = data[0], data[1]
+
+    hour_now = now.hour
+    minute_now = now.minute
+
+    return (hour, minute), (hour_now, minute_now)
+
+
 def comprasion(site_date, date_now):
     if date_now == site_now:
         return True
@@ -38,3 +50,14 @@ def messeage_create(data):
 
     message = f"{name}\n{time}\n{type_lesson}\n{lecturer}"
     return message
+
+
+def comprasion_subject(data_one, data_two):
+    differences = dict()
+    keys = data_one["subjects"]
+
+    for key in keys:
+        if data_one[key] != data_two[key]:
+            differences[key] = data_two[key]
+
+    return differences

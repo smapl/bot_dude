@@ -7,7 +7,14 @@ from loguru import logger
 
 from .meta import TOKEN, GROUP_ID
 from .parse import data_from_site
-from .utils import week_num, date_normolize, comprasion, messeage_create
+from .utils import (
+    week_num,
+    date_normolize,
+    comprasion,
+    messeage_create,
+    comprasion_subject,
+    time_normolize,
+)
 
 
 def postman(user_id, message):
@@ -23,6 +30,7 @@ def postman(user_id, message):
     return
 
 
+# TODO: найти разницу во времени
 def сontroller():
     user_id = "211217307"
     date_now, week_number = week_num()
@@ -36,9 +44,8 @@ def сontroller():
             message = messeage_create(day["subjects"])
             postman(user_id, message)
 
-            return True
+            time_lesson = day["subjects"]["time"]
+            time_site, time_now = time_normolize(time_lesson)
 
         else:
             continue
-
-    return False

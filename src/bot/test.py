@@ -6,5 +6,6 @@ year = now.year
 month = now.month
 day = now.day
 
-week_number = datetime.date(year, month, day).isocalendar()[1]
-print()
+now_new = datetime.date(year, month, day)
+any_date = datetime.date(2021, 2, 19)
+print(now_new == any_date)

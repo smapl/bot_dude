@@ -7,18 +7,15 @@ from loguru import logger
 
 from .meta import TOKEN, GROUP_ID
 from .parse import data_from_site
-from .utils import week_num
-
-user_id = "108832239"
+from .utils import week_num, date_normolize, comprasion, messeage_create
 
 
-def postman():
+def postman(user_id, message):
 
     vk_session = vk_api.VkApi(token=TOKEN)
     vk = vk_session.get_api()
-    longpoll = VkBotLongPoll(vk=vk_session, group_id=GROUP_ID)
     vk.messages.send(
-        message="hola",
+        message=message,
         random_id=random.getrandbits(32),
         user_id=user_id,
     )
@@ -27,7 +24,21 @@ def postman():
 
 
 def сontroller():
-    week_number = week_num()
+    user_id = "211217307"
+    date_now, week_number = week_num()
     data = data_from_site(week_number)
 
-    return
+    for day in data:
+        norm_date = date_normolize(day["day_number"])
+        date_comprasion = comprasion(norm_date, date_now)
+
+        if date_comprasion == True:
+            message = messeage_create(day["subjects"])
+            postman(user_id, message)
+
+            return True
+
+        else:
+            continue
+
+    return False

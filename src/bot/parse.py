@@ -4,7 +4,7 @@ from loguru import logger
 import requests
 import json
 
-from utils import edit
+from .utils import edit
 
 
 def data_from_site(week_number):
@@ -20,8 +20,8 @@ def data_from_site(week_number):
     for day in days:
 
         day_number = day.find(
-            "div", {"class": "sc-table-col sc-day-header sc-gray"}, text=True
-        )
+            "div", {"class": "sc-table-col sc-day-header sc-gray"}
+        ).text
         subjects = day.find_all("div", {"class": "sc-table-row"})
 
         day_subjects = list()

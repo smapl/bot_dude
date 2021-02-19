@@ -1,6 +1,5 @@
-
-from .bot import handler.listener 
+from bot.handler import listener
 
 
 if __name__ == "__main__":
-    listener()
+    pass

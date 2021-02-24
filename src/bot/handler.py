@@ -30,7 +30,7 @@ def postman(user_id, message):
     return
 
 
-# TODO: найти разницу во времени
+# TODO: сделать проверку расписания через каждые полчаса и уведомить при изменении
 def сontroller():
     date_now, week_number = week_num()
     data = data_from_site(week_number)
@@ -56,9 +56,6 @@ def сontroller():
                 ) - datetime.combine(date.today(), time_now)
                 different = time_different.seconds // 60
 
-                print()
-
-            print()
         else:
             message = "Сегодня у вас пар нет"
             postman(ARTYOM_ID, message)

@@ -28,7 +28,8 @@ def data_from_site(week_number):
             day_number = day.find(
                 "div", {"class": "sc-table-col sc-day-header sc-blue"}
             ).text
-        subjects = day.find_all("div", {"class": "sc-table-row"})
+        subs = day.find("div", {"class": "sc-table sc-table-detail"})
+        subjects = subs.find_all("div", {"class": "sc-table-row"})
 
         day_subjects = list()
         for subject in subjects:

@@ -29,7 +29,7 @@ def time_normolize(site_time):
     now = datetime.datetime.now()
 
     data = site_time.split("-")[0].replace(" ", "")
-    hour, minute = data[0], data[1]
+    hour, minute = int(data[0]), int(data[1])
 
     hour_now = now.hour
     minute_now = now.minute

@@ -1,7 +1,7 @@
 import vk_api
 
 import random
-import datetime
+from datetime import datetime, date, time
 
 from loguru import logger
 
@@ -46,9 +46,20 @@ def сontroller():
                 message += f"{i+1}. {message_norm}\n"
 
             postman(ARTYOM_ID, message)
+            for i, sub in enumerate(day["subjects"]):
+                time_lesson = sub["time"]
+                time_site, time_now = time_normolize(time_lesson)
+                time_site = time(time_site[0], time_site[1])
+                time_now = time(time_now[0], time_now[1])
+                time_different = datetime.combine(
+                    date.today(), time_site
+                ) - datetime.combine(date.today(), time_now)
+                different = time_different.seconds // 60
 
-            # time_lesson = day["subjects"]["time"]
-            # time_site, time_now = time_normolize(time_lesson)
+                print()
 
+            print()
         else:
-            continue
+            message = "Сегодня у вас пар нет"
+            postman(ARTYOM_ID, message)
+            break

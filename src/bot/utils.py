@@ -15,11 +15,11 @@ def week_num():
 
     week_number = datetime.date(year, month, day).isocalendar()[1]
     date_now = datetime.date(year, month, day)
-    return date_now, week_number + 5
+    return date_now, week_number - 5
 
 
 def date_normolize(date):
-    norm = date[:5], split(".")
+    norm = date[:5].split(".")
     day, month, year = int(norm[0]), int(norm[1]), datetime.datetime.now().year
 
     return datetime.date(year, month, day)
@@ -38,7 +38,7 @@ def time_normolize(site_time):
 
 
 def comprasion(site_date, date_now):
-    if date_now == site_now:
+    if date_now == site_date:
         return True
 
 

@@ -5,7 +5,7 @@ import datetime
 
 from loguru import logger
 
-from .meta import TOKEN, GROUP_ID
+from .meta import TOKEN, GROUP_ID, ARTYOM_ID
 from .parse import data_from_site
 from .utils import (
     week_num,
@@ -32,7 +32,6 @@ def postman(user_id, message):
 
 # TODO: найти разницу во времени
 def сontroller():
-    user_id = "211217307"
     date_now, week_number = week_num()
     data = data_from_site(week_number)
 
@@ -41,11 +40,15 @@ def сontroller():
         date_comprasion = comprasion(norm_date, date_now)
 
         if date_comprasion == True:
-            message = messeage_create(day["subjects"])
-            postman(user_id, message)
+            message = ""
+            for i, sub in enumerate(day["subjects"]):
+                message_norm = messeage_create(sub)
+                message += f"{i+1}. {message_norm}\n"
 
-            time_lesson = day["subjects"]["time"]
-            time_site, time_now = time_normolize(time_lesson)
+            postman(ARTYOM_ID, message)
+
+            # time_lesson = day["subjects"]["time"]
+            # time_site, time_now = time_normolize(time_lesson)
 
         else:
             continue

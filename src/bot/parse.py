@@ -19,9 +19,15 @@ def data_from_site(week_number):
 
     for day in days:
 
-        day_number = day.find(
-            "div", {"class": "sc-table-col sc-day-header sc-gray"}
-        ).text
+        try:
+            day_number = day.find(
+                "div", {"class": "sc-table-col sc-day-header sc-gray"}
+            ).text
+        except Exception as ex:
+            logger.info(ex)
+            day_number = day.find(
+                "div", {"class": "sc-table-col sc-day-header sc-blue"}
+            ).text
         subjects = day.find_all("div", {"class": "sc-table-row"})
 
         day_subjects = list()

@@ -5,7 +5,7 @@ from datetime import datetime, date, time
 
 from loguru import logger
 
-from .meta import TOKEN, GROUP_ID, ARTYOM_ID
+from .meta import TOKEN, GROUP_ID, TIMA_ID, ARTYOM_ID
 from .parse import data_from_site
 from .utils import (
     week_num,
@@ -45,7 +45,8 @@ def сontroller():
                 message_norm = messeage_create(sub)
                 message += f"{i+1}. {message_norm}\n"
 
-            postman(ARTYOM_ID, message)
+            postman(TIMA_ID, message)
+
             for i, sub in enumerate(day["subjects"]):
                 time_lesson = sub["time"]
                 time_site, time_now = time_normolize(time_lesson)
@@ -55,8 +56,11 @@ def сontroller():
                     date.today(), time_site
                 ) - datetime.combine(date.today(), time_now)
                 different = time_different.seconds // 60
+            break
 
         else:
-            message = "Сегодня у вас пар нет"
-            postman(ARTYOM_ID, message)
-            break
+            continue
+
+        message = "Сегодня у вас пар нет"
+        postman(TIMA_ID, message)
+        break

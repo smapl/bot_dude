@@ -56,7 +56,8 @@ def сontroller():
                     date.today(), time_site
                 ) - datetime.combine(date.today(), time_now)
                 different = time_different.seconds // 60
-            break
+
+            return different, day["subjects"]
 
         else:
             continue

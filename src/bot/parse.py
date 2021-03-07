@@ -11,7 +11,6 @@ def data_from_site(week_number):
     url = f"https://mai.ru/education/schedule/detail.php?group=%D0%A212%D0%9E-105%D0%9C-20&week={week_number}"
 
     response = requests.get(url)
-    schedule = list()
     soup = BeautifulSoup(response.text, "html5lib")
 
     content_block = soup.find("div", {"id": "schedule-content"})
@@ -21,13 +20,11 @@ def data_from_site(week_number):
 
         try:
             day_number = day.find(
-                "div", {"class": "sc-table-col sc-day-header sc-gray"}
-            ).text
-        except Exception as ex:
-            logger.info(ex)
-            day_number = day.find(
                 "div", {"class": "sc-table-col sc-day-header sc-blue"}
             ).text
+        except Exception as ex:
+            continue
+
         subs = day.find("div", {"class": "sc-table sc-table-detail"})
         subjects = subs.find_all("div", {"class": "sc-table-row"})
 
@@ -61,5 +58,6 @@ def data_from_site(week_number):
             "subjects": day_subjects,
         }
 
-        schedule.append(data_day)
-    return schedule
+        return data_day
+
+    return False

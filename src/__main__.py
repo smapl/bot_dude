@@ -1,9 +1,9 @@
 import schedule
 import time
 
-from bot.handler import сontroller
+from bot.handler import time_controller
 
 
 if __name__ == "__main__":
 
-    time_different, lessons_today = сontroller()
+    time_controller()

@@ -1,4 +1,3 @@
-import schedule
 import time
 
 from bot.handler import time_controller

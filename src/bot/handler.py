@@ -40,7 +40,7 @@ def сontroller():
             message_norm = messeage_create(sub)
             message += f"{i+1}. {message_norm}\n"
 
-        postman(ARTYOM_ID, message)
+        postman(TIMA_ID, message)
 
         for i, sub in enumerate(data["subjects"]):
             time_lesson = sub["time"]
@@ -57,7 +57,7 @@ def сontroller():
     else:
 
         message = "Сегодня у вас пар нет"
-        postman(ARTYOM_ID, message)
+        postman(TIMA_ID, message)
 
     return False
 
@@ -77,7 +77,7 @@ def time_controller():
 
             if lessons_today != data["subjects"]:
                 message = "Произошло изменение в рассписании "
-                postman(ARTYOM_ID, message)
+                postman(TIMA_ID, message)
                 lessons_today = data["subjects"]
 
             else:

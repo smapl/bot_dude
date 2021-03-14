@@ -10,9 +10,7 @@ vk-api = "^11.9.1"
 requests = "^2.25.1"
 bs4 = "^0.0.1"
 loguru = "^0.5.3"
-lxml = "^4.6.2"
 html5lib = "^1.1"
-schedule = "^1.0.0"
 
 [tool.poetry.dev-dependencies]
 
